@@ -1,0 +1,203 @@
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar {
+    width: 250px;
+
+    background: #ffffff;
+
+    border-right: 1px solid #e8ebf0;
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    z-index: 1000;
+
+    transition: transform 0.3s ease;
+
+    overflow-y: auto;
+}
+
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.logo {
+    height: 75px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 0 25px;
+
+    border-bottom: 1px solid #eef0f4;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    color: #172033;
+}
+
+.logo-icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    font-size: 20px;
+
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   SIDEBAR NAVIGATION
+===================================================== */
+
+.sidebar-nav {
+    padding: 25px 15px;
+}
+
+
+/* =====================================================
+   NAVIGATION SECTION
+===================================================== */
+
+.nav-section {
+    margin-bottom: 28px;
+}
+
+
+/* =====================================================
+   SECTION TITLE
+===================================================== */
+
+.section-title {
+    margin: 0 12px 10px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    color: #9aa2b1;
+
+    letter-spacing: 0.8px;
+}
+
+
+/* =====================================================
+   NAV LINK
+===================================================== */
+
+.nav-link {
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 0 13px;
+
+    margin-bottom: 4px;
+
+    border-radius: 8px;
+
+    color: #536074;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    transition: background 0.2s ease,
+                color 0.2s ease;
+}
+
+
+/* =====================================================
+   ICON
+===================================================== */
+
+.nav-link i {
+    width: 20px;
+
+    text-align: center;
+
+    font-size: 15px;
+}
+
+
+/* =====================================================
+   HOVER
+===================================================== */
+
+.nav-link:hover {
+    background: #f1f5ff;
+
+    color: #2563eb;
+}
+
+
+/* =====================================================
+   ACTIVE PAGE
+===================================================== */
+
+.nav-link.active {
+    background: #eff4ff;
+
+    color: #2563eb;
+
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   OPTIONAL: SCROLLBAR
+===================================================== */
+
+.sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #d9dee8;
+
+    border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+}

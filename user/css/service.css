@@ -1,0 +1,147 @@
+.user-container {
+    max-width: 1250px;
+    margin: auto;
+    padding: 0 25px;
+}
+
+
+/* =========================
+   BANNER
+========================= */
+
+.page-banner {
+    background: #172033;
+    min-height: 300px;
+
+    display: flex;
+    align-items: center;
+}
+
+.page-banner-content {
+    max-width: 1250px;
+    width: 100%;
+    margin: auto;
+    padding: 40px 25px;
+    color: white;
+}
+
+.page-banner-content span {
+    color: #60a5fa;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.page-banner-content h1 {
+    font-size: 42px;
+    margin: 10px 0;
+}
+
+.page-banner-content p {
+    color: #b8c0ce;
+    font-size: 15px;
+}
+
+
+/* =========================
+   SERVICES
+========================= */
+
+.all-services {
+    padding: 80px 0;
+}
+
+.section-heading {
+    margin-bottom: 40px;
+}
+
+.section-heading > span {
+    color: #2563eb;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.section-heading h2 {
+    font-size: 30px;
+    margin-top: 8px;
+}
+
+.all-service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.full-service-card {
+    background: white;
+
+    border: 1px solid #e8ebf0;
+
+    border-radius: 13px;
+
+    overflow: hidden;
+
+    text-decoration: none;
+    color: #172033;
+
+    transition: 0.25s ease;
+}
+
+.full-service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(23, 32, 51, 0.08);
+}
+
+.full-service-card img,
+.service-placeholder {
+    width: 100%;
+    height: 210px;
+}
+
+.full-service-card img {
+    object-fit: cover;
+}
+
+.service-placeholder {
+    background: #eff4ff;
+    color: #2563eb;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 45px;
+}
+
+.full-service-content {
+    padding: 24px;
+}
+
+.full-service-content h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.full-service-content p {
+    color: #667085;
+    font-size: 14px;
+    line-height: 1.7;
+
+    margin-bottom: 18px;
+}
+
+.full-service-content span {
+    color: #2563eb;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+@media (max-width: 850px) {
+
+    .all-service-grid {
+        grid-template-columns: 1fr;
+    }
+
+}

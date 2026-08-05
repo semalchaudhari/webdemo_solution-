@@ -1,0 +1,281 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+    background: #f5f7fb;
+
+    color: #172033;
+}
+
+
+/* MAIN */
+
+.admin-main {
+    margin-left: 250px;
+
+    min-height: 100vh;
+
+    padding: 35px;
+}
+
+
+/* HEADER */
+
+.page-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 30px;
+}
+
+.page-header h1 {
+    font-size: 27px;
+
+    margin-bottom: 6px;
+}
+
+.page-header p {
+    color: #7c8697;
+
+    font-size: 14px;
+}
+
+
+/* BACK */
+
+.back-btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 10px 15px;
+
+    background: #ffffff;
+
+    color: #536074;
+
+    border: 1px solid #e1e5eb;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+.back-btn:hover {
+    color: #2563eb;
+
+    background: #f8f9fc;
+}
+
+
+/* CARD */
+
+.brand-card {
+    width: 100%;
+
+    max-width: 900px;
+
+    background: #ffffff;
+
+    border: 1px solid #e8ebf0;
+
+    border-radius: 12px;
+
+    padding: 30px;
+}
+
+
+/* LOGO */
+
+.logo-section {
+    margin-bottom: 30px;
+}
+
+.brand-logo {
+    width: 180px;
+
+    height: 150px;
+
+    object-fit: contain;
+
+    padding: 15px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+}
+
+.no-logo {
+    width: 180px;
+
+    height: 150px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #f3f4f6;
+
+    color: #9ca3af;
+
+    border-radius: 10px;
+
+    font-size: 30px;
+}
+
+
+/* DETAILS */
+
+.brand-details {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    border-top: 1px solid #eef0f4;
+
+    border-bottom: 1px solid #eef0f4;
+}
+
+.detail-item {
+    padding: 18px 10px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+.detail-label {
+    color: #8a94a6;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+.detail-item strong,
+.detail-item > span:last-child {
+    color: #172033;
+
+    font-size: 14px;
+}
+
+
+/* ACTIONS */
+
+.card-actions {
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 25px;
+}
+
+
+/* EDIT */
+
+.edit-btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 11px 17px;
+
+    background: #f5f3ff;
+
+    color: #7c3aed;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+.edit-btn:hover {
+    background: #ede9fe;
+}
+
+
+/* DELETE */
+
+.delete-btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 11px 17px;
+
+    background: #fef2f2;
+
+    color: #dc2626;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+.delete-btn:hover {
+    background: #fee2e2;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .admin-main {
+        margin-left: 0;
+
+        padding: 20px 15px;
+    }
+
+    .page-header {
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+    .brand-details {
+        grid-template-columns: 1fr;
+    }
+
+    .card-actions {
+        flex-direction: column;
+    }
+
+    .edit-btn,
+    .delete-btn {
+        justify-content: center;
+    }
+
+}
