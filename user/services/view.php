@@ -79,7 +79,7 @@ include "../includes/header.php";
 
                     </div>
 
-                    <a href="#contact" class="primary-btn">
+                    <a href="../contact.php" class="primary-btn">
                         Contact Us
                     </a>
 
