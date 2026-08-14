@@ -4,6 +4,7 @@ $page = 'about';
 $page_title = 'About Us | WebDemo Solutions';
 
 include "includes/header.php";
+require_once "../user/config/dbconn.php";
 
 ?>
 
@@ -13,6 +14,7 @@ include "includes/header.php";
          ABOUT HERO
     ========================== -->
     <link rel="stylesheet" href="/demoweb/user/css/about.css">
+    <link rel="stylesheet" href="/demoweb/user/css/footer.css">
 
     <section class="about-hero">
 

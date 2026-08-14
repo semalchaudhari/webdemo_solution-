@@ -196,6 +196,38 @@ body {
 
     font-size: 13px;
 }
+.whatsapp-float {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+
+    width: 60px;
+    height: 60px;
+
+    background: #25D366;
+    color: #fff;
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 34px;
+
+    text-decoration: none;
+
+    box-shadow: 0 6px 15px rgba(0,0,0,.25);
+
+    transition: .3s;
+
+    z-index: 9999;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    background: #1ebe5d;
+}
 
 
 /* =========================

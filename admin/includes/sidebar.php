@@ -69,6 +69,12 @@ $page = $page ?? '';
 
             </a>
 
+            <a href="/demoweb/admin/cms/index.php"
+               class="nav-link <?= $page === 'cms' ? 'active' : '' ?>">
+                <i class="fa-solid fa-cog"></i>
+                <span>CMS</span>
+            </a>
+
         </div>
 
 

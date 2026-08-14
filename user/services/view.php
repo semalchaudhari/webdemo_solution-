@@ -36,6 +36,7 @@ include "../includes/header.php";
 ?>
 
 <link rel="stylesheet" href="/demoweb/user/css/service-view.css">
+<link rel="stylesheet" href="/demoweb/user/css/footer.css">
 
 
 <main class="service-view-page">

@@ -435,6 +435,20 @@ $messages = $conn->query("SELECT COUNT(*) AS total FROM contact_messages")
                                 <i class="fa-solid fa-chevron-right action-arrow"></i>
                             </a>
 
+                            <a href="./cms/index.php" class="action-card">
+                                <div class="action-icon">
+                                    <i class="fa-solid fa-plus"></i>
+                                </div>
+
+                                <div>
+                                    <h3>Update CMS</h3>
+                                    <p>Update website contact information</p>
+                                </div>
+
+                                <i class="fa-solid fa-chevron-right action-arrow"></i>
+                            </a>
+
+
                         </div>
 
                     </div>

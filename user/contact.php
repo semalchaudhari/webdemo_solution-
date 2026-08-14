@@ -3,10 +3,18 @@
 $page = 'contact';
 $page_title = 'Contact Us | WebDemo Solutions';
 
-require_once "./config/dbconn.php";
+require_once "../user/config/dbconn.php";
 
 $success = "";
 $error = "";
+
+$sql = "
+    SELECT email, mobile, whatsapp, location
+    FROM company_info
+    LIMIT 1
+";
+
+$result = $conn->query($sql)->fetch_assoc();
 
 
 /* =========================
@@ -27,11 +35,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($name === "" || $phone === "" || $message === "") {
 
         $error = "Please fill in all fields.";
-
     } elseif (!preg_match("/^[0-9+\-\s]{10,15}$/", $phone)) {
 
         $error = "Please enter a valid phone number.";
-
     } else {
 
         /* =========================
@@ -54,19 +60,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if ($stmt->execute()) {
 
-            $success = "Thank you! Your message has been sent successfully.";
-
-            $name = "";
-            $phone = "";
-            $message = "";
-
+            header("Location: " . $_SERVER['PHP_SELF'] . "?status=success");
+            exit;
         } else {
 
-            $error = "Something went wrong. Please try again.";
-
+            header("Location: " . $_SERVER['PHP_SELF'] . "?status=error");
+            exit;
         }
 
-        $stmt->close();
     }
 }
 
@@ -78,7 +79,8 @@ include "includes/header.php";
 
 <main class="contact-page">
 
-<link rel="stylesheet" href="/demoweb/user/css/contact.css">
+    <link rel="stylesheet" href="/demoweb/user/css/contact.css">
+    <link rel="stylesheet" href="/demoweb/user/css/footer.css">
 
 
     <!-- =========================
@@ -127,10 +129,7 @@ include "includes/header.php";
                     CONTACT US
                 </span>
 
-                <h2>
-                    We're Here To
-                    <span>Help.</span>
-                </h2>
+                <h2>We're Here To<span>Help.</span></h2>
 
                 <p class="contact-description">
                     Whether you have a question about our services,
@@ -158,7 +157,7 @@ include "includes/header.php";
                             </span>
 
                             <h3>
-                                +91 98765 43210
+                                <?= $result['mobile'] ?>
                             </h3>
 
                         </div>
@@ -183,7 +182,7 @@ include "includes/header.php";
                             </span>
 
                             <h3>
-                                info@webdemo.com
+                                <?= $result['email'] ?>
                             </h3>
 
                         </div>
@@ -208,7 +207,7 @@ include "includes/header.php";
                             </span>
 
                             <h3>
-                                Your Business Address
+                                <?= htmlspecialchars($result['location']) ?>
                             </h3>
 
                         </div>
@@ -240,26 +239,25 @@ include "includes/header.php";
                 </div>
 
 
-                <?php if ($success): ?>
+               <?php if (isset($_GET['status']) && $_GET['status'] === 'success'): ?>
 
                     <div class="alert success-alert">
 
                         <i class="fa-solid fa-circle-check"></i>
 
-                        <?= htmlspecialchars($success) ?>
-
+                         Your inquiry has been submitted successfully.
                     </div>
 
                 <?php endif; ?>
 
 
-                <?php if ($error): ?>
+                <?php if (isset($_GET['status']) && $_GET['status'] === 'error'): ?>
 
                     <div class="alert error-alert">
 
                         <i class="fa-solid fa-circle-exclamation"></i>
 
-                        <?= htmlspecialchars($error) ?>
+                        Something went wrong. Please try again.
 
                     </div>
 

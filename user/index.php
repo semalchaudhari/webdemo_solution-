@@ -3,7 +3,8 @@
 $page = 'home';
 $page_title = 'WebDemo Solutions';
 
-require_once "../admin/config/dbconn.php";
+require_once "../user/config/dbconn.php";
+
 
 
 // =========================
@@ -85,12 +86,90 @@ $gallery_sql = "
 
 $gallery = $conn->query($gallery_sql);
 
+    // =========================
+    //inquiry form submission handling
+    // =========================
+
+
+
+$inquiry_success = "";
+$inquiry_error = "";
+
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["inquiry_submit"])) {
+
+    $name = trim($_POST["name"] ?? "");
+    $phone = trim($_POST["phone"] ?? "");
+    $message = trim($_POST["message"] ?? "");
+
+
+    /* =========================
+       VALIDATION
+    ========================= */
+
+    if ($name === "" || $phone === "" || $message === "") {
+
+        $inquiry_error = "Please fill in all the fields.";
+
+    } elseif (strlen($name) < 2) {
+
+        $inquiry_error = "Please enter a valid name.";
+
+    } elseif (!preg_match("/^[0-9+\-\s]{10,15}$/", $phone)) {
+
+        $inquiry_error = "Please enter a valid phone number.";
+
+    } elseif (strlen($message) < 5) {
+
+        $inquiry_error = "Please enter a valid message.";
+
+    } else {
+
+        /* =========================
+           INSERT
+        ========================= */
+
+        $stmt = $conn->prepare("
+            INSERT INTO contact_messages
+            (name, phone, message)
+            VALUES (?, ?, ?)
+        ");
+
+        $stmt->bind_param(
+            "sss",
+            $name,
+            $phone,
+            $message
+        );
+
+        if ($stmt->execute()) {
+
+            $inquiry_success = "Your inquiry has been submitted successfully.";
+
+        } else {
+
+            $inquiry_error = "Unable to submit your inquiry. Please try again.";
+
+        }
+
+        $stmt->close();
+    }
+}
+
+
+$page = "home";
+$page_title = "Home";
+
+
+
+
 
 include "includes/header.php";
 
 ?>
 
-<link rel="stylesheet" href="/demoweb/user/css/home.css">
+<link rel="stylesheet" href="/demoweb/user/css/home1.css">
+<link rel="stylesheet" href="/demoweb/user/css/footer.css">
+<link rel="stylesheet" href="/demoweb/user/css/inquiry.css">
 
 
 <!-- ==================================================
@@ -547,80 +626,181 @@ include "includes/header.php";
 
 </section>
 
+<!-- =========================
+     INQUIRY POPUP
+========================== -->
 
-<!-- ==================================================
-     GALLERY
-================================================== -->
 
-<!-- <section class="gallery-section">
+<div
+    class="inquiry-overlay <?= ($inquiry_success || $inquiry_error) ? 'show' : '' ?>"
+    id="inquiryPopup">
 
-    <div class="home-container">
+    <div class="inquiry-box">
 
-        <div class="section-heading">
 
-            <span class="section-label">
-                OUR WORK
+        <!-- CLOSE -->
+
+        <button
+            type="button"
+            class="inquiry-close"
+            id="closeInquiry">
+
+            &times;
+
+        </button>
+
+
+        <!-- =========================
+             HEADER
+        ========================== -->
+
+        <div class="inquiry-header">
+
+            <span class="inquiry-label">
+                GET IN TOUCH
             </span>
 
             <h2>
-                Gallery
+                Have an Inquiry?
             </h2>
 
             <p>
-                Take a look at our work and activities.
+                Tell us what you need and we'll get back to you soon.
             </p>
 
         </div>
 
 
-        <div class="gallery-grid">
+        <!-- =========================
+             SUCCESS MESSAGE
+        ========================== -->
 
-            <?php if ($gallery && $gallery->num_rows > 0): ?>
+        <?php if ($inquiry_success): ?>
 
-                <?php while ($photo = $gallery->fetch_assoc()): ?>
+            <div class="inquiry-message success">
 
-                    <div class="gallery-card">
+                <i class="fa-solid fa-circle-check"></i>
 
-                        <img
-                            src="../upload/gallery/<?= htmlspecialchars($photo['image']) ?>"
-                            alt="<?= htmlspecialchars($photo['title']) ?>">
+                <span>
+                    <?= htmlspecialchars($inquiry_success) ?>
+                </span>
 
-                        <div class="gallery-overlay">
+            </div>
 
-                            <i class="fa-solid fa-expand"></i>
-
-                            <span>
-                                <?= htmlspecialchars($photo['title']) ?>
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                <?php endwhile; ?>
-
-            <?php endif; ?>
-
-        </div>
+        <?php endif; ?>
 
 
-        <div class="center-btn">
+        <!-- =========================
+             ERROR MESSAGE
+        ========================== -->
 
-            <a
-                href="gallery/index.php"
-                class="secondary-btn">
+        <?php if ($inquiry_error): ?>
 
-                View Full Gallery
+            <div class="inquiry-message error">
 
-            </a>
+                <i class="fa-solid fa-circle-exclamation"></i>
 
-        </div>
+                <span>
+                    <?= htmlspecialchars($inquiry_error) ?>
+                </span>
+
+            </div>
+
+        <?php endif; ?>
+
+
+        <!-- =========================
+             FORM
+        ========================== -->
+
+        <?php if (!$inquiry_success): ?>
+
+            <form
+                method="POST"
+                action=""
+                class="inquiry-form">
+
+
+                <!-- NAME -->
+
+                <div class="form-group">
+
+                    <label for="inquiry_name">
+                        Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="inquiry_name"
+                        name="name"
+                        placeholder="Enter your name"
+                        value="<?= htmlspecialchars($_POST['name'] ?? '') ?>"
+                        required>
+
+                </div>
+
+
+                <!-- PHONE -->
+
+                <div class="form-group">
+
+                    <label for="inquiry_phone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="inquiry_phone"
+                        name="phone"
+                        placeholder="Enter your phone number"
+                        value="<?= htmlspecialchars($_POST['phone'] ?? '') ?>"
+                        required>
+
+                </div>
+
+
+                <!-- MESSAGE -->
+
+                <div class="form-group">
+
+                    <label for="inquiry_message">
+                        Message
+                    </label>
+
+                    <textarea
+                        id="inquiry_message"
+                        name="message"
+                        rows="4"
+                        placeholder="Write your inquiry..."
+                        required><?= htmlspecialchars($_POST['message'] ?? '') ?></textarea>
+
+                </div>
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    name="inquiry_submit"
+                    class="inquiry-submit">
+
+                    Send Inquiry
+
+                    <i class="fa-solid fa-paper-plane"></i>
+
+                </button>
+
+            </form>
+
+        <?php endif; ?>
 
     </div>
 
-</section> -->
+</div>
 
 
-<script src="/demoweb/user/js/home1.js"></script>
+<script src="/demoweb/user/js/inquiry1.js"></script>
+
+<script src="/demoweb/user/js/home2.js"></script>
 
 <?php include "includes/footer.php"; ?>

@@ -321,7 +321,7 @@
    HORIZONTAL SLIDERS
 ========================= */
 
-.services-slider-section,
+/* .services-slider-section,
 .brands-section {
     background: white;
     padding: 80px 0;
@@ -364,7 +364,141 @@
 .review-arrow:hover {
     background: #eff4ff;
 }
+ */
 
+ /* =========================
+   SERVICES & BRANDS SECTION
+========================= */
+
+.services-slider-section,
+.brands-section {
+    background: white;
+    padding: 80px 0;
+}
+
+
+/* =========================
+   SLIDER WRAPPER
+========================= */
+
+.horizontal-slider-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+
+/* =========================
+   HORIZONTAL SLIDER
+========================= */
+
+.horizontal-slider {
+    display: flex;
+    gap: 18px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    flex: 1;
+
+    scroll-behavior: smooth;
+
+    /* Hide scrollbar */
+    scrollbar-width: none;
+
+    /* Prevent items from wrapping */
+    white-space: nowrap;
+}
+
+
+/* Chrome / Edge / Safari */
+
+.horizontal-slider::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* =========================
+   SLIDER ITEMS
+========================= */
+
+.horizontal-slider > * {
+    flex: 0 0 auto;
+}
+
+
+/* =========================
+   BRAND ITEM
+========================= */
+
+.brand-item {
+    flex: 0 0 180px;
+}
+
+
+/* =========================
+   SLIDER ARROWS
+========================= */
+
+.slider-arrow,
+.review-arrow {
+    flex: 0 0 auto;
+
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid #e2e6ed;
+    border-radius: 50%;
+
+    background: white;
+    color: #2563eb;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.2s ease;
+}
+
+
+/* =========================
+   ARROW HOVER
+========================= */
+
+.slider-arrow:hover,
+.review-arrow:hover {
+    background: #eff4ff;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .services-slider-section,
+    .brands-section {
+        padding: 60px 0;
+    }
+
+    .horizontal-slider-wrapper {
+        gap: 10px;
+    }
+
+    .slider-arrow,
+    .review-arrow {
+        width: 36px;
+        height: 36px;
+    }
+
+    .brand-item {
+        flex: 0 0 150px;
+    }
+
+}
 
 /* =========================
    MINI SERVICE

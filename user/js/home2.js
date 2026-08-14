@@ -77,41 +77,114 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function createSlider(containerId, prevSelector, nextSelector) {
 
-        const container = document.getElementById(containerId);
+    const container = document.getElementById(containerId);
 
-        const prev = document.querySelector(prevSelector);
-        const next = document.querySelector(nextSelector);
+    const prev = document.querySelector(prevSelector);
+    const next = document.querySelector(nextSelector);
 
-        if (!container) return;
+    if (!container) return;
 
-        if (next) {
 
-            next.addEventListener("click", function () {    
+    function slideNext() {
 
-                container.scrollBy({
-                    left: 300,
-                    behavior: "smooth"
-                });
+        const maxScroll =
+            container.scrollWidth - container.clientWidth;
 
+        if (container.scrollLeft >= maxScroll - 5) {
+
+            container.scrollTo({
+                left: 0,
+                behavior: "smooth"
+            });
+
+        } else {
+
+            container.scrollBy({
+                left: 300,
+                behavior: "smooth"
             });
 
         }
+    }
 
-        if (prev) {
 
-            prev.addEventListener("click", function () {
+    function slidePrevious() {
 
-                container.scrollBy({
-                    left: -300,
-                    behavior: "smooth"
-                });
+        if (container.scrollLeft <= 5) {
 
+            container.scrollTo({
+                left: 0,
+                behavior: "smooth"
+            });
+
+        } else {
+
+            container.scrollBy({
+                left: -300,
+                behavior: "smooth"
             });
 
         }
+    }
+
+
+    // NEXT BUTTON
+
+    if (next) {
+
+        next.addEventListener("click", function () {
+
+            slideNext();
+
+        });
 
     }
 
+
+    // PREVIOUS BUTTON
+
+    if (prev) {
+
+        prev.addEventListener("click", function () {
+
+            slidePrevious();
+
+        });
+
+    }
+
+
+    // AUTO SLIDE
+
+    let autoSlide = setInterval(function () {
+
+        slideNext();
+
+    }, 800);
+
+
+    // PAUSE WHEN MOUSE IS OVER SLIDER
+
+    container.addEventListener("mouseenter", function () {
+
+        clearInterval(autoSlide);
+
+    });
+
+
+    // RESUME WHEN MOUSE LEAVES
+
+    container.addEventListener("mouseleave", function () {
+
+        autoSlide = setInterval(function () {
+
+            slideNext();
+
+        }, 800);
+
+    });
+
+}
 
     createSlider(
         "serviceSlider",

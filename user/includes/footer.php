@@ -1,3 +1,18 @@
+<?php
+
+
+
+$sql = "
+    SELECT email, mobile, whatsapp, location
+    FROM company_info
+    LIMIT 1
+";
+
+$result = $conn->query($sql)->fetch_assoc();
+
+
+?>
+
 <footer class="site-footer">
 
     <div class="footer-container">
@@ -51,17 +66,21 @@
 
             <p>
                 <i class="fa-solid fa-envelope"></i>
-                info@webdemo.com
+                <?= $result['email'] ?>
             </p>
 
             <p>
                 <i class="fa-solid fa-phone"></i>
-                +91 98765 43210
+                <?= $result['mobile'] ?>
             </p>
 
             <p>
+                <i class="fa-brands fa-whatsapp"></i>
+                <?= $result['whatsapp'] ?>
+
+            <p>
                 <i class="fa-solid fa-location-dot"></i>
-                India
+                <?= $result['location'] ?>
             </p>
 
         </div>
@@ -78,7 +97,14 @@
 
     </div>
 
+    <a href="https://wa.me/91<?= preg_replace('/\D/', '', $result['whatsapp']) ?>"
+        class="whatsapp-float"
+        target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
 </footer>
 
 </body>
+
 </html>

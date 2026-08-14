@@ -18,6 +18,7 @@ include "../includes/header.php";
 ?>
 
 <link rel="stylesheet" href="/demoweb/user/css/review.css">
+<link rel="stylesheet" href="/demoweb/user/css/footer.css">
 
 
 <main>

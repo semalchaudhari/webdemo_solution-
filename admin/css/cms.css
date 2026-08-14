@@ -1,0 +1,267 @@
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+/* =========================
+   BODY
+========================= */
+
+body{
+    font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+    background:#f5f7fb;
+    color:#172033;
+}
+
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.admin-main{
+    margin-left:250px;
+    width:calc(100% - 250px);
+    min-height:100vh;
+    padding:35px;
+}
+
+
+/* =========================
+   PAGE HEADER
+========================= */
+
+.page-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.page-header h1{
+    font-size:27px;
+    margin-bottom:6px;
+}
+
+.page-header p{
+    color:#7c8697;
+    font-size:14px;
+}
+
+
+/* =========================
+   ALERT MESSAGE
+========================= */
+
+.alert{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    padding:14px 18px;
+    margin-bottom:25px;
+
+    border-radius:10px;
+
+    font-size:14px;
+    font-weight:500;
+
+    transition:.3s;
+}
+
+.alert i{
+    font-size:17px;
+}
+
+.success{
+    background:#ecfdf5;
+    border:1px solid #bbf7d0;
+    color:#15803d;
+}
+
+.error{
+    background:#fef2f2;
+    border:1px solid #fecaca;
+    color:#dc2626;
+}
+
+
+/* =========================
+   FORM CARD
+========================= */
+
+.cms-card{
+
+    background:#ffffff;
+
+    border:1px solid #e8ebf0;
+
+    border-radius:12px;
+
+    padding:30px;
+}
+
+
+/* =========================
+   FORM GRID
+========================= */
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:25px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.form-group.full{
+    grid-column:1 / -1;
+}
+
+
+/* =========================
+   LABEL
+========================= */
+
+.form-group label{
+
+    margin-bottom:8px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    color:#344054;
+}
+
+
+/* =========================
+   INPUTS
+========================= */
+
+.form-group input,
+.form-group textarea{
+
+    width:100%;
+
+    padding:12px 14px;
+
+    border:1px solid #d0d5dd;
+
+    border-radius:8px;
+
+    font-size:14px;
+
+    outline:none;
+
+    transition:.2s;
+}
+
+.form-group textarea{
+
+    resize:vertical;
+
+    min-height:120px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 0 3px rgba(37,99,235,.12);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.form-footer{
+
+    margin-top:30px;
+
+    display:flex;
+
+    justify-content:flex-end;
+}
+
+
+/* =========================
+   SAVE BUTTON
+========================= */
+
+.save-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:12px 22px;
+
+    background:#2563eb;
+
+    color:#fff;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    transition:.2s;
+}
+
+.save-btn:hover{
+
+    background:#1d4ed8;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+    .admin-main{
+
+        margin-left:0;
+
+        width:100%;
+
+        padding:20px;
+    }
+
+    .form-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .page-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:10px;
+    }
+
+}
